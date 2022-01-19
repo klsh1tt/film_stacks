@@ -1,19 +1,21 @@
-
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:film_stacks/add_film/add_film_page.dart';
+import 'package:film_stacks/domain/film.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_slidable/flutter_slidable.dart';
-//import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
+import 'film_list_model.dart';
 
 class FilmListPage extends StatelessWidget {
-  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('books').snapshots();
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('films').snapshots();
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<FilmListModel>(
-      create: (_) => FilmListModel()..fetchBookList(),
+      create: (_) => FilmListModel()..fetchFilmList(),
       child: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
@@ -55,17 +57,18 @@ class FilmListPage extends StatelessWidget {
 
             final List<Widget> widgets = films
                 .map(
-                   (films) => ListTile(
+                  (films) => ListTile(
                     title: Text(film.title),
                     subtitle: Text(film.watchingPlatform),
                   ),
-                ).toList();
+                )
+                .toList();
             return ListView(
               children: widgets,
             );
           }),
         ),
-        floatingActionButton: Consumer<filmListModel>(builder: (context, model, child) {
+        floatingActionButton: Consumer<FilmListModel>(builder: (context, model, child) {
           return FloatingActionButton(
             onPressed: () async {
               //画面遷移
