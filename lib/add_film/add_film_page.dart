@@ -1,11 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'add_film_model.dart';
 
 class AddFilmPage extends StatelessWidget {
-  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('films').snapshots();
+  // final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('films').snapshots();
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AddFilmModel>(
