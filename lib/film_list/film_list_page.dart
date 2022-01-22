@@ -1,4 +1,4 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:film_stacks/add_film/add_film_page.dart';
 import 'package:film_stacks/domain/film.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'film_list_model.dart';
 
 class FilmListPage extends StatelessWidget {
-//  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('films').snapshots();
+ final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('films').snapshots();
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
