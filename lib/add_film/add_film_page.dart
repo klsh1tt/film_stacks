@@ -1,11 +1,11 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'add_film_model.dart';
 
 class AddFilmPage extends StatelessWidget {
-  // final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('films').snapshots();
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('films').snapshots();
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AddFilmModel>(
@@ -13,7 +13,7 @@ class AddFilmPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            '本を追加',
+            '見た映画を追加',
           ),
         ),
         body: Center(
@@ -39,7 +39,7 @@ class AddFilmPage extends StatelessWidget {
                           }),
                       TextField(
                         decoration: InputDecoration(
-                          hintText: '本のタイトル',
+                          hintText: '映画のタイトル',
                         ),
                         onChanged: (text) {
                           model.title = text;
@@ -50,10 +50,10 @@ class AddFilmPage extends StatelessWidget {
                       ),
                       TextField(
                         decoration: InputDecoration(
-                          hintText: '本の著者',
+                          hintText: '見た場所（サービス）',
                         ),
                         onChanged: (text) {
-                          model.author = text;
+                          model.watchingPlatform = text;
                         },
                       ),
                       SizedBox(
